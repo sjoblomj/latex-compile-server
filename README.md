@@ -10,6 +10,17 @@ Build and run it with Docker with two simple commands. Note that this will downl
 
 `docker run -p 58404:58404 latex-compile-server`
 
+
+## What this project is
+* Convenient - no need to clutter your file system with LaTeX packages. Just call a Rest service.
+* Distributable - you can run this on any computer with Docker installed.
+
+## What this project is not
+* Small - this will download at least 2-3 GB, and the container will take around 5 GB of disk size.
+* Secure - this is intended to be run locally, with trusted data. No security measures whatsoever has been added.
+* User friendly - if a file fails to compile, you won't get nice error messages. The easiest way then is to log into the container using `docker logs`, and view the log file for yourself.
+
+
 ## Example usage
 There is a personal invitation sample in the `example` directory, which will produce a document typesetted with pgfornament. The layout and "main document" is in `example/invite.tex`, and the personal information is in `example/personalinfo.tex`.
 
@@ -20,13 +31,4 @@ In the curl command, we have specified a few things:
 * `F "data=@doc.zip"` - The zip of the documents is called `doc.zip`, so we specify that here
 * `--output invite.pdf` - latex-compile-server sends a pdf back, and we here specify the name and location of where to save it.
 
-![Image of example](https://github.com/sjoblomj/latex-compile-server/example/invite.png "PDF from example")
-
-## What this project is
-* Convenient - no need to clutter your file system with LaTeX packages. Just call a Rest service.
-* Distributable - you can run this on any computer with Docker installed.
-
-## What this project is not
-* Small - this will download at least 2-3 GB, and the container will take around 5 GB of disk size.
-* Secure - this is intended to be run locally, with trusted data. No security measures whatsoever has been added.
-* User friendly - if a file fails to compile, you won't get nice error messages. The easiest way then is to log into the container using `docker logs`, and view the log file for yourself.
+![PDF from example](https://raw.githubusercontent.com/sjoblomj/latex-compile-server/main/example/invite.png "PDF from example")
