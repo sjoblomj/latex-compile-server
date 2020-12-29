@@ -1,7 +1,6 @@
 # latex-compile-server
-A webserver, running in a Docker container, that can receive and compile [LaTeX documents](http://en.wikipedia.org/wiki/LaTeX). The server accepts zip-files sent to it via Rest Post-calls, and it unzips the given files, compiles them with `xelatex` and sends the resulting pdf back.
+A webserver, running in a Docker container, that can receive and compile [LaTeX documents](http://en.wikipedia.org/wiki/LaTeX). The server accepts zip-files sent to it via Rest Post-calls to http://localhost:58404/compile, and it unzips the given files, compiles them with `xelatex` and sends the resulting pdf back.
 
-[pgfornament](https://ctan.org/pkg/pgfornament) by Alain Matthes et al. is preinstalled and ready to be used in the input documents.
 
 ## Running the Docker container
 Build and run it with Docker with two simple commands. Note that this will download at least 2-3 GB of data, and the resulting image will be at least 5 GB large!
@@ -22,7 +21,7 @@ Build and run it with Docker with two simple commands. Note that this will downl
 
 
 ## Example usage
-There is a personal invitation sample in the `example` directory, which will produce a document typesetted with pgfornament. The layout and "main document" is in `example/invite.tex`, and the personal information is in `example/personalinfo.tex`.
+There is a personal invitation sample in the `example` directory, which will produce a document that is typeset with [pgfornament](https://ctan.org/pkg/pgfornament) by Alain Matthes et al. The layout and "main document" is in `example/invite.tex`, and the personal information is in `example/personalinfo.tex`.
 
 To compile it, run the Docker container. Compress the two files to a zip: `zip -rj doc.zip example`. Then run `curl -X POST -H "Content-Type: multipart/form-data" -F "mainFile=invite" -F "data=@doc.zip" http://localhost:58404/compile --output invite.pdf`
 

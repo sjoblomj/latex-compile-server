@@ -11,21 +11,10 @@ RUN apt-get update
 
 # INSTALL TEX PACKAGES
 RUN apt-get install --yes --no-install-recommends \
+  unzip \
   ca-certificates \
   lmodern \
   texlive-full
-
-
-# INSTALL PGFORNAMENT
-RUN apt-get install --yes unzip curl
-RUN mkdir -p ~/texmf/tex/latex/pgfornament
-RUN mkdir -p ~/texmf/tex/generic/pgfornament
-
-RUN curl -L -X GET http://mirrors.ctan.org/macros/latex/contrib/tkz/pgfornament.zip -o /tmp/pgfornament.zip
-RUN unzip /tmp/pgfornament.zip -d /tmp
-WORKDIR /tmp/pgfornament
-RUN cp latex/* ~/texmf/tex/latex/pgfornament/
-RUN cp -r generic/* ~/texmf/tex/generic/pgfornament/
 
 
 # INSTALL JAVA
