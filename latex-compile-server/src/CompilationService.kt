@@ -18,6 +18,7 @@ fun Route.routing() {
 	route("/compile") {
 
 		post {
+			println("Received call")
 			val mainDir = "uploads/" + UUID.randomUUID().toString()
 			File(mainDir).mkdirs()
 
@@ -43,6 +44,7 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.saveAttachment(mainDi
 
 private fun saveToFile(part: PartData.FileItem, mainDir: String) {
 	val file = File("$mainDir/$zipFileName")
+	println("Saving zip to ${file.path}")
 
 	part.streamProvider().use { its ->
 		file.outputStream().buffered().use {
